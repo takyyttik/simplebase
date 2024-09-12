@@ -10,6 +10,12 @@ CSS TABLE OF CONTENTS
     # GLOBAL TYPOGRAPHY
     # GLOBAL MEDIA
 
+# LAYOUT
+    # MEDIA QUERY
+    # CONTAINER
+    # GRID
+    # 
+
 -------------------------------
 -------------------------------
 -----------------------------*/
@@ -29,6 +35,9 @@ CSS TABLE OF CONTENTS
     /* DEGINE ALL FONTS USED HERE */
     --font-body: Helvetica, Arial, sans-serif;
     --font-headings: Georgia, serif;
+
+    /* SIZING UNITS */
+    --container-width: 1200px;
 
 }
 
@@ -119,4 +128,72 @@ img {
     /* MAKE ALL IMAGES SHRINK ON SMALL CREENS */
     max-width: 100%;
     height: auto;
+}
+
+/* LAYOUT */
+
+/* RESPONSICE TYPOGRAPHY VIA MEDIA QUERIES */
+
+/* SMALL SCREENS {Mobile < 768px} */
+
+body {
+    /* SET THE DEFAULT FONT SIZE TO 14px */
+    font-size: 87.5%;
+}
+
+/* MEDIUM SCREENS {Tablets < 1200px} */
+
+@media (min-width: 768px) {
+    body {
+        /* SET THE DEFAULT FONT SIZE TO 16px */
+        font-size: 100%;
+    }
+}
+
+/* LARGE SCREENS {Laptops & Desktops > 1200px} */
+
+@media (min-width: 1200px) {
+    body {
+        /* SET THE DEFAULT FONT SIZE TO 16px */
+        font-size: 112.5%;
+    }
+}
+
+/* CONTAINER */
+.container {
+    /* SET THE MAX WIDTH OF YOUR SITE (eg 1200px)  */
+    max-width: var(--container-width);
+
+    /* CENTER THE CONTAINER HORIZONTALLY */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* GRID */
+.row {
+    --gridgap: 1em;
+}
+
+.row > * {
+    margin-bottom: var(--gridgap);
+}
+
+@media (min-width:768px) {
+    .row {
+        --gridgap: 1em;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: var(--gridgap);
+    }
+    .one-half {grid-column: span 6 / span 6;}
+    .one-third {grid-column: span 4 / span 4;}
+    .two-thirds {grid-column: span 8 / span 8;}
+    .one-forth {grid-column: span 3 / span 3;}
+    .three-fourths {grid-column: span 9 / span 9;}
+}
+/* FOR DEMO PURPOSES */
+.demo > * {
+    background-color: #444;
+    padding: 1em;
+    text-align: center;
 }

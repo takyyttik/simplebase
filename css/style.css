@@ -41,7 +41,7 @@ CSS TABLE OF CONTENTS
     --color-links-hover: rgb(255 225 0 /1);
 
     /* DEGINE ALL FONTS USED HERE */
-    --font-body: Helvetica, Arial, sans-serif;
+    --font-body: system-ui, Helvetica, Arial, sans-serif;
     --font-headings: Georgia, serif;
 
     /* SIZING UNITS */

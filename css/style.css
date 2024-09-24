@@ -25,6 +25,10 @@ CSS TABLE OF CONTENTS
             # HERO
     # FOOTER
 
+# UI COMPONETS
+    # BUTTONS
+    # CARDS
+
 -------------------------------
 -------------------------------
 -----------------------------*/
@@ -35,15 +39,26 @@ CSS TABLE OF CONTENTS
 
     /* DEFINE ALL COMMONLY USED COLORS HERE */
 
-    --color-body-background:rgb(0 0 0);
-    --color-text-body: rgb(255 255 255 / .8);
-    --color-text-headings: rgb(255 255 255 / 1);
-    --color-links: rgb(255 255 255 / .8);
-    --color-links-hover: rgb(255 225 255 /1);
+    --color-body-background:rgb(255 255 255);
+    --color-text-body: rgb(0 0 0 / .8);
+    --color-text-headings: rgb(0 0 0 / 1);
+
+    --color-links-dark: rgb(102 102 102);
+    --color-links-darker: rgb(0 0 0);
+    --color-links-light: rgb(204 204 204);
+    --color-links-lighter: rgb(255 255 255);
+
     --color-siteheader-background: transparent;
     --color-siteheader-links: rgb(255 255 255);
+
     --color-hero-background: rgb(100 100 100);
+    --color-hero-text: rgb(255 255 255 /.8);
+    --color-hero-headings: rgb(255 255 255 / 1);
+
     --color-sitefooter-background: rgb(100 100 100);
+    --color-sitefooter-text: rgb(255 255 255 /.8);
+    --color-sitefooter-headings: (255 255 255 / 1);
+    --color-sitefooter-links: (255 255 255);
 
     /* DEGINE ALL FONTS USED HERE */
     --font-body: system-ui, Helvetica, Arial, sans-serif;
@@ -345,22 +360,80 @@ section {
 
 .hero {
     background-color: var(--color-hero-background);
+    color: var(--color-hero-text);
+
     /* ADD MORE SPACE ON TOP FOR THE ABSOLUTE HEADER */
     padding-top: calc(4em + var(--unit-large));
+    h1, h2, h3 {
+        color: var(--color-hero-headings);
+    }
 }
 
 /* SITE FOOTER */
 .site-footer {
     background-color: var(--color-sitefooter-background);
+    color: var(--color-sitefooter-text);
 
     /* ADD SOME GENERAL SPACEING/PADDING AROUND THE HEADER */
-    padding: var(--unit-small);
+    padding: var(--unit-small);    
+
+    h1, h2, h3 {
+        color: var(--color-sitefooter-headings);
+    }
+
+    a {
+        color: var(--color-sitefooter-links);
+    }
+
+
 
     .site-nav {
         ul {
             list-style: none;
             margin: 0;
             padding: 0;
+        }
+    }
+}
+
+/* ------------------------ */
+/* -----UI COMPONENTS------ */
+/* ----------------------- */
+
+/* BUTTONS */
+.button {
+    /* SET THE BUTTON COLORS */
+    border: 1px solid var(--color-links-dark);
+    background-color: var(--color-links-dark);
+    color: white;
+
+    /* ENABLE BOX MODLE STYLING */
+    display: inline-block;
+    padding: var(--unit-small);
+    margin: var(--unit-small) 0;
+
+    /* GET RID OF THE UNDERLINE */
+    text-decoration: none;
+
+    + .button {
+        margin-left: var(--unit-small);
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: var(--color-links-darker);
+        border-color: var(--color-links-darker);
+    }
+
+    /* LIGHT BUTTON VARIANT */
+    &.light {
+        border-color: var(--color-links-light);
+        background-color: var(--color-links-light);
+        color: var(--color-links-lighter);
+
+        &:hover {
+            border-color: var(--color-links-lighter);
+            background-color:  var(--color-links-lighter);
         }
     }
 }

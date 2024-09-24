@@ -38,11 +38,12 @@ CSS TABLE OF CONTENTS
     --color-body-background:rgb(0 0 0);
     --color-text-body: rgb(255 255 255 / .8);
     --color-text-headings: rgb(255 255 255 / 1);
-    --color-links: rgb(255 255 0 / .7);
-    --color-links-hover: rgb(255 225 0 /1);
+    --color-links: rgb(255 255 255 / .8);
+    --color-links-hover: rgb(255 225 255 /1);
     --color-siteheader-background: transparent;
     --color-siteheader-links: rgb(255 255 255);
     --color-hero-background: rgb(100 100 100);
+    --color-sitefooter-background: rgb(100 100 100);
 
     /* DEGINE ALL FONTS USED HERE */
     --font-body: system-ui, Helvetica, Arial, sans-serif;
@@ -271,17 +272,21 @@ body {
 .site-header {
     background-color: var(--color-siteheader-background);
 
-    /*  PUT ALL HEADER CHILDREN SIDE BY SIDE AND VERT CENTERED */
-    display: flex;
+    /*  PUT ALL HEADER CHILDREN SIDE BY SIDE AND VERT CENTERED ON LARGE SCREENS*/
+    @media (min-width: 768px) {
+        display: flex;
     justify-content: space-between;
     align-items: center;
+    }
 
     /* ADD SOME GENERAL SPACEING/PADDING AROUND THE HEADER */
     padding: var(--unit-small);
 
-    /* RENDER HEADER ON TOP OF HERO */
-    position: absolute;
-    width: 100%;
+    /* RENDER HEADER ON TOP OF HERO ON LARGE SCREENS*/
+    @media (min-width: 768px) {
+        position: absolute;
+        width: 100%;
+    }
 
     /* REMOVE LINK UNDERLINES AND SET SITE HEADER LINK COLOR */
     a {
@@ -308,18 +313,21 @@ body {
         /* REMOVE MARGINS FROM LIST AND BULLETS */
         ul {
             margin: 0;
+            padding: 0;
             list-style: none;
 
-            /* DISPLAY CHILDREN SIDE-BY-SIDE */
-            display: flex;
+            /* DISPLAY CHILDREN SIDE-BY-SIDE N LARGE SCREENS*/
+            @media (min-width: 768px) {
+                display: flex;
+            }
         }
         /* MAKE SITE NAV LINKS BIG LIKE BUTTONS */
         a {
             display: block;
             padding: 1em;
         }
-    }
 
+    }
 
 }
 
@@ -343,8 +351,16 @@ section {
 
 /* SITE FOOTER */
 .site-footer {
-    background-color: skyblue;
+    background-color: var(--color-sitefooter-background);
 
     /* ADD SOME GENERAL SPACEING/PADDING AROUND THE HEADER */
     padding: var(--unit-small);
+
+    .site-nav {
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
 }

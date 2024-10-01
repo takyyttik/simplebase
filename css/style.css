@@ -213,7 +213,7 @@ body {
 
 /* GRID */
 .row {
-    --gridgap: 1em;
+    --gridgap: 2em;
 }
 
 .row > * {
@@ -340,8 +340,79 @@ body {
             padding: 1em;
         }
 
-    }
+        /* TOGGLE MENU */
 
+        /* HIDE MENU BUTTON IF NOT USING TOGGLE NAV */
+        .site-menu-button {
+            display: none;
+            
+        }
+
+        &.toggle-menu {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+
+            /* SHOW MENU BUTTON IF NOT USING TOGGLE NAV */
+            .site-menu-button {
+                display: block;
+                background-color: transparent;
+                border: 1px solid black;
+                padding: 0.5em;
+                position: relative;
+                z-index: 100;
+                
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .site-menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100%;
+                min-height: 100svh;
+                background-color: pink;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 3vw;
+                transition: .4s all ease-out;
+
+                a {
+                    padding: 2vh 2vw;
+                }
+            }
+
+            &[data-menustate="open"] {
+                /* SET MENU BUTTON TO FIXED WHEN MENU IS OPEN */
+                .site-menu-button {
+                    position: fixed;
+                    z-index: 100;
+                }
+
+                /* SHOW THE SITE MENU WHEN OPEN */
+                .site-menu {
+                    transform: translatex(0);
+                }
+            }
+
+            &[data-menustate="closed"] {
+                /* MOVE THE SITE MENU TO THE RIGHT WHEN CLOSED */
+                .site-menu {
+                    transform: translatex(100%);
+                }
+            }
+            
+        }
+
+    }
+    /* IF TOGGLE MENU DISPLAY LOGO ON LEFT AND MENU ON RIGHT ON ALL SCREENS */
+    &:has(.toggle-menu) {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 /* PLACE SITE HEADER ON TOP OF HERO ON LARGE SCREENS*/

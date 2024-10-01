@@ -20,6 +20,7 @@ CSS TABLE OF CONTENTS
     # HEADER
         # LOGO
         # SITE NAV
+        #SITE-HEADER-ON-TOP-OF-HERO
     # MAIN
         # SECTIONS
             # HERO
@@ -216,6 +217,7 @@ body {
 }
 
 .row > * {
+    margin-top: var(--gridgap);
     margin-bottom: var(--gridgap);
 }
 
@@ -297,22 +299,19 @@ body {
     /* ADD SOME GENERAL SPACEING/PADDING AROUND THE HEADER */
     padding: var(--unit-small);
 
-    /* RENDER HEADER ON TOP OF HERO ON LARGE SCREENS*/
-    @media (min-width: 768px) {
-        position: absolute;
-        width: 100%;
-    }
 
-    /* REMOVE LINK UNDERLINES AND SET SITE HEADER LINK COLOR */
+    /* REMOVE LINK UNDERLINES IN HEADER */
     a {
-        color: var(--color-siteheader-links);
         text-decoration: none;
     }
 
     /* SITE LOGO */
     .site-logo {
+
+        /* PUT SITE LOGO CHILDREN SIDE-BY-SIDE AND CENTER */
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 1em;
 
         /* REMOVE MARGINS AND RESIZE H1 INSIDE HEADER */
@@ -321,6 +320,7 @@ body {
         margin: 0;
         text-wrap: nowrap;
         }
+
     }
 
     /* SITE NAV */
@@ -330,11 +330,9 @@ body {
             margin: 0;
             padding: 0;
             list-style: none;
-
-            /* DISPLAY CHILDREN SIDE-BY-SIDE N LARGE SCREENS*/
-            @media (min-width: 768px) {
-                display: flex;
-            }
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         /* MAKE SITE NAV LINKS BIG LIKE BUTTONS */
         a {
@@ -344,6 +342,25 @@ body {
 
     }
 
+}
+
+/* PLACE SITE HEADER ON TOP OF HERO ON LARGE SCREENS*/
+.site-header.on-top-of-hero {
+    @media (min-width:768px) {
+        /* RENDER HEADER ON TOP OF HERO */
+        position: absolute;
+        width: 100%;
+
+    /* SET SITE HEADER LINK COLOR ON LARGE SCREENS */
+        a {
+            color: var(--color-siteheader-links);
+        }
+
+    /* ADD MORE SPACE ON TOP FOR THE ABSOLUTE HEADER */
+        & + .site-header > .hero {
+        padding-top: calc(4em + var(--unit-large));
+        }
+    }
 }
 
 /* SITE MAIN */
@@ -362,8 +379,6 @@ section {
     background-color: var(--color-hero-background);
     color: var(--color-hero-text);
 
-    /* ADD MORE SPACE ON TOP FOR THE ABSOLUTE HEADER */
-    padding-top: calc(4em + var(--unit-large));
     h1, h2, h3 {
         color: var(--color-hero-headings);
     }

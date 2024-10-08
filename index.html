@@ -16,15 +16,23 @@
     <header class="site-header on-top-of-herox">
         <div class="site-logo">
             <a href="index.html">
-                <!-- <img src="https://via.placeholder.com/60" alt="Site Base Logo" width="60" height="60"> -->
+                <!-- <img src="img/placeholder-logo-500x500.png" alt="Site Base Logo" width="50" height="50"> -->
+                <!-- <img src="img/placeholder-logo-500x500.svg" alt="Site Base Logo" width="50" height="50"> -->
                 <svg width="50" height="50">
                     <circle r="25" cx="25" cy="25" fill="#888"></circle>
                 </svg>
             </a>
             <h1 class="hide-visuallyx"><a href="index.html">Simple Base</a></h1>
         </div>
-        <nav class="site-nav toggle-menu" data-menustate="closed">
-            <button class="site-menu-button">Menu</button>
+        <nav class="site-header-nav toggle-menu" data-menustate="closed">
+            <button class="site-menu-button">
+                <span class="hide-visually">Menu</span>
+                <svg class="simple-navicon" width="24" height="21">
+                    <rect class="simple-navicon-top" x="0" y="2" height="3" width="24"></rect>
+                    <rect class="simple-navicon-middle" x="0" y="9" height="3" width="24"></rect>
+                    <rect class="simple-navicon-bottom" x="0" y="16" height="3" width="24"></rect>
+                </svg>
+            </button>
             <ul class="site-menu">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
@@ -45,6 +53,7 @@
                     <div class="one-half">
                         <h1>Hero Headline</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam officiis doloribus, id expedita provident nulla! Possimus unde saepe ducimus harum.</p>
+                        <a href="#" class="button light">Default Button</a>
                     </div>
                     
                 </div>
@@ -87,7 +96,7 @@
             <div class="container">
                 <div class="row">
                     <div class="one-half centered">
-                        <img src="img/placeholder-2000x1500.png" alt="placeholder Image">
+                        <img src="img/placeholder-2000x1500.svg" alt="placeholder Image">
                         <h1>This is a Heading</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A commodi et deleniti sed quis fugiat cum! Doloribus reprehenderit accusantium laboriosam!</p>
                     </div>
@@ -106,7 +115,7 @@
                 </div>
                 <div class="one-fourth">
                     <h2>Pages</h2>
-                    <nav class="site-nav">
+                    <nav class="site-footer-nav">
                         <ul>
                             <li><a href="index.html">Home</a></li>
                             <li><a href="products.html">Products</a></li>

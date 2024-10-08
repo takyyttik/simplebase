@@ -40,17 +40,21 @@ CSS TABLE OF CONTENTS
 
     /* DEFINE ALL COMMONLY USED COLORS HERE */
 
-    --color-body-background:rgb(255 255 255);
+    /* --color-body-background:rgb(255 255 255);
     --color-text-body: rgb(0 0 0 / .8);
-    --color-text-headings: rgb(0 0 0 / 1);
+    --color-text-headings: rgb(0 0 0 / 1); */
 
-    --color-links-dark: rgb(102 102 102);
+    --color-body-background:rgb(0, 0, 0);
+    --color-text-body: rgb(255, 255, 255, 0.8);
+    --color-text-headings: rgb(255, 255, 255, 00.8);
+
+    --color-links-dark: rgb(255, 255, 255);
     --color-links-darker: rgb(0 0 0);
     --color-links-light: rgb(204 204 204);
     --color-links-lighter: rgb(255 255 255);
 
     --color-siteheader-background: transparent;
-    --color-siteheader-links: rgb(255 255 255);
+    --color-siteheader-links: var(--color-text-headings);
 
     --color-hero-background: rgb(100 100 100);
     --color-hero-text: rgb(255 255 255 /.8);
@@ -324,7 +328,7 @@ body {
     }
 
     /* SITE NAV */
-    .site-nav {
+    .site-header-nav {
         /* REMOVE MARGINS FROM LIST AND BULLETS */
         ul {
             margin: 0;
@@ -339,98 +343,137 @@ body {
             display: block;
             padding: 1em;
         }
-
-        /* TOGGLE MENU */
-
-        /* HIDE MENU BUTTON IF NOT USING TOGGLE NAV */
-        .site-menu-button {
-            display: none;
-            
-        }
-
-        &.toggle-menu {
-            display: flex;
-            flex-direction: row-reverse;
-            align-items: center;
-
-            /* SHOW MENU BUTTON IF NOT USING TOGGLE NAV */
-            .site-menu-button {
-                display: block;
-                background-color: transparent;
-                border: 1px solid black;
-                padding: 0.5em;
-                position: relative;
-                z-index: 100;
-                
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-
-            .site-menu {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 100%;
-                min-height: 100svh;
-                background-color: pink;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                font-size: 3vw;
-                transition: .4s all ease-out;
-
-                a {
-                    padding: 2vh 2vw;
-                }
-            }
-
-            &[data-menustate="open"] {
-                /* SET MENU BUTTON TO FIXED WHEN MENU IS OPEN */
-                .site-menu-button {
-                    position: fixed;
-                    z-index: 100;
-                }
-
-                /* SHOW THE SITE MENU WHEN OPEN */
-                .site-menu {
-                    transform: translatex(0);
-                }
-            }
-
-            &[data-menustate="closed"] {
-                /* MOVE THE SITE MENU TO THE RIGHT WHEN CLOSED */
-                .site-menu {
-                    transform: translatex(100%);
-                }
-            }
-            
-        }
-
-    }
-    /* IF TOGGLE MENU DISPLAY LOGO ON LEFT AND MENU ON RIGHT ON ALL SCREENS */
-    &:has(.toggle-menu) {
-        display: flex;
-        justify-content: space-between;
     }
 }
 
+/* TOGGLE MENU */
+
+/* HIDE MENU BUTTON IF NOT USING TOGGLE NAV */
+.site-menu-button {
+    display: none;
+    
+}
+
+.toggle-menu {
+
+    --color-togglemenu-background: green;
+    --color-togglemenu-text: pink;
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    /* SHOW MENU BUTTON IF NOT USING TOGGLE NAV */
+    .site-menu-button {
+        display: block;
+        background-color: transparent;
+        border: 1px solid var(--color-siteheader-links);
+        color: var(--color-siteheader-links);
+        padding: 0.5em;
+        position: relative;
+        z-index: 100;
+        
+        /* TRANSITION */
+        transition: all .4s ease-out;
+
+        /* RESET THE FONT SIZE */
+        font-size: inherit;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        /* ADD SUPPORT FOR NAVICON / HAMBURGER ICON */
+        &:has(svg) {
+
+            /* VERTICALLY ALIGN THE MENU TEXT W ICON */
+            display: flex;
+            align-content: center;
+            gap: var(--unit-small);
+
+            /* REMOVE BORDER */
+            border: none;
+
+            /* /SET THE COLOR OF THE SVG TO MATCH */
+            svg {
+                fill: var(--color-siteheader-links);
+            }
+
+        }
+    }
+
+    .site-menu {
+
+        /* SET COLORS TO TOGGLE MENU COLORS */
+        background-color: var(--color-togglemenu-background);
+        color: var(--color-togglemenu-text);
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        min-height: 100svh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 3vw;
+        transition: .4s all ease-out;
+
+        a {
+            color: var(--color-togglemenu-text);
+            padding: 2vh 2vw;
+        }
+    }
+
+    &[data-menustate="open"] {
+
+        /* CHANGE COLORS TO TOGGLE MENU COLORS */
+        --color-siteheader-links: var(--color-togglemenu-text);
+
+        /* SET MENU BUTTON TO FIXED WHEN MENU IS OPEN */
+        .site-menu-button {
+            position: fixed;
+            z-index: 100;
+        }
+
+        /* SHOW THE SITE MENU WHEN OPEN */
+        .site-menu {
+            transform: translatex(0);
+        }
+    }
+
+    &[data-menustate="closed"] {
+        /* MOVE THE SITE MENU TO THE RIGHT WHEN CLOSED */
+        .site-menu {
+            transform: translatex(100%);
+        }
+    }
+    
+}
+
+/* IF TOGGLE MENU DISPLAY LOGO ON LEFT AND MENU ON RIGHT ON ALL SCREENS */
+.site-header:has(.toggle-menu) {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
 /* PLACE SITE HEADER ON TOP OF HERO ON LARGE SCREENS*/
 .site-header.on-top-of-hero {
-    @media (min-width:768px) {
-        /* RENDER HEADER ON TOP OF HERO */
-        position: absolute;
-        width: 100%;
+    /* RENDER HEADER ON TOP OF HERO */
+    position: absolute;
+    width: 100%;
 
-    /* SET SITE HEADER LINK COLOR ON LARGE SCREENS */
-        a {
-            color: var(--color-siteheader-links);
-        }
+/* SET SITE HEADER LINK COLOR ON LARGE SCREENS */
+--color-siteheader-links: var(--color-hero-headings);
+    a {
+        color: var(--color-siteheader-links);
+    }
 
-    /* ADD MORE SPACE ON TOP FOR THE ABSOLUTE HEADER */
-        & + .site-header > .hero {
-        padding-top: calc(4em + var(--unit-large));
-        }
+/* ADD MORE SPACE ON TOP FOR THE ABSOLUTE HEADER */
+    & + .site-header > .hero {
+    padding-top: calc(4em + var(--unit-large));
     }
 }
 
@@ -473,7 +516,7 @@ section {
 
 
 
-    .site-nav {
+    .site-footer-nav {
         ul {
             list-style: none;
             margin: 0;
@@ -515,7 +558,7 @@ section {
     &.light {
         border-color: var(--color-links-light);
         background-color: var(--color-links-light);
-        color: var(--color-links-lighter);
+        color: var(--color-links-darker);
 
         &:hover {
             border-color: var(--color-links-lighter);

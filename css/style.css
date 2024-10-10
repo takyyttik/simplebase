@@ -28,7 +28,11 @@ CSS TABLE OF CONTENTS
 
 # UI COMPONETS
     # BUTTONS
-    # CARDS
+
+#ANIMATION
+    #SMOOTH SCROLLING
+
+#CUSTOM STYLING
 
 -------------------------------
 -------------------------------
@@ -40,13 +44,13 @@ CSS TABLE OF CONTENTS
 
     /* DEFINE ALL COMMONLY USED COLORS HERE */
 
-    /* --color-body-background:rgb(255 255 255);
+    --color-body-background:rgb(255 255 255);
     --color-text-body: rgb(0 0 0 / .8);
-    --color-text-headings: rgb(0 0 0 / 1); */
+    --color-text-headings: rgb(0 0 0 / 1);
 
-    --color-body-background:rgb(0, 0, 0);
+    /* --color-body-background:rgb(0, 0, 0);
     --color-text-body: rgb(255, 255, 255, 0.8);
-    --color-text-headings: rgb(255, 255, 255, 00.8);
+    --color-text-headings: rgb(255, 255, 255, 00.8); */
 
     --color-links-dark: rgb(255, 255, 255);
     --color-links-darker: rgb(0 0 0);
@@ -124,29 +128,24 @@ body {
 h1, h2, h3 {
     /* SET THE FONT FOR ALL HEADING TEXT */
     font-family: var(--font-headings);
+    margin: .4em 0;
 }
 
 h1 {
-    /* SET H1 FONT SIZE */
+    /* SET H1 FONT SIZE AND LEADING*/
     font-size: 3em;
-
-    /* SET H1 LEADING */
-    line-height: 1;
+    line-height: 1.1;
 }
 
 h2 {
-    /* SET H2 FONT SIZE */
+    /* SET H2 FONT SIZE AND LEADING*/
     font-size: 2em;
-
-    /* SET H2 LEADING */
     line-height: 1.2;
 }
 
 h3 {
-    /* SET H3 FONT SIZE */
+    /* SET H3 FONT SIZE AND LEADING*/
     font-size: 1.5em;
-
-    /* SET H3 LEADING */
     line-height: 1.3;
 }
 
@@ -318,11 +317,21 @@ body {
         justify-content: center;
         gap: 1em;
 
+        /* PLACE LOGO ON TOP OF DRAWER MENU */
+        /* NOTE: LOGO WILL SCROLL AWAY > NEED TO ADD SUPPORT FOR FIXED */
+        /* position: relative; */
+        z-index: 100;
+
         /* REMOVE MARGINS AND RESIZE H1 INSIDE HEADER */
         h1 {
         font-style: 2em;
         margin: 0;
         text-wrap: nowrap;
+        }
+
+        /* REMOVE THE SPACE UNDER THE LOGO MARK */
+        img, svg {
+            display: block;
         }
 
     }
@@ -389,7 +398,7 @@ body {
             /* VERTICALLY ALIGN THE MENU TEXT W ICON */
             display: flex;
             align-content: center;
-            gap: var(--unit-small);
+            gap: calc(var(--unit-small) / 2);
 
             /* REMOVE BORDER */
             border: none;
@@ -397,6 +406,12 @@ body {
             /* /SET THE COLOR OF THE SVG TO MATCH */
             svg {
                 fill: var(--color-siteheader-links);
+            }
+
+            /* ADD SUPPORT FOR SVG ANIMATION */
+            svg > * {
+                transition: all .2s ease-out;
+                transform-origin: center;
             }
 
         }
@@ -411,6 +426,7 @@ body {
         position: fixed;
         top: 0;
         right: 0;
+        z-index: 50;
         width: 100%;
         min-height: 100svh;
         flex-direction: column;
@@ -440,6 +456,24 @@ body {
         .site-menu {
             transform: translatex(0);
         }
+
+        /* ANIMATE THE NAVICON / HAMBURGER TO AN X */
+        .site-menu-button svg {
+
+            .simple-navicon-top {
+                rotate: 45deg;
+                translate: -21% 24%;
+            }
+            .simple-navicon-middle {
+                opacity: 0;
+                
+            }
+
+            .simple-navicon-bottom {
+                rotate: -45deg;
+                translate: -21% -24%;
+            }
+        }
     }
 
     &[data-menustate="closed"] {
@@ -455,6 +489,11 @@ body {
 .site-header:has(.toggle-menu) {
     display: flex;
     justify-content: space-between;
+
+    .site-logo {
+        position: relative;
+        z-index: 100;
+    }
 }
 
 
@@ -492,6 +531,13 @@ section {
 .hero {
     background-color: var(--color-hero-background);
     color: var(--color-hero-text);
+
+    h1 {
+        font-size: 4em;
+        line-height: 1;
+        text-wrap: balance;
+    }
+
 
     h1, h2, h3 {
         color: var(--color-hero-headings);
@@ -544,6 +590,7 @@ section {
     /* GET RID OF THE UNDERLINE */
     text-decoration: none;
 
+    /* ADD A SPACE BETWEEN BUTTON WEHN THERE ARE MORE THAN ONE */
     + .button {
         margin-left: var(--unit-small);
     }
@@ -565,4 +612,14 @@ section {
             background-color:  var(--color-links-lighter);
         }
     }
+}
+
+
+/* ---------------------- */
+/* ----- ANIMATION ----- */
+/* ---------------------- */
+
+/* ADD SUPPORT FOR SMOOTH SCROLLING */
+html {
+    scroll-behavior: smooth;
 }

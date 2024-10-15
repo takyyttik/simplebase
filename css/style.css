@@ -52,10 +52,12 @@ CSS TABLE OF CONTENTS
     --color-text-body: rgb(255, 255, 255, 0.8);
     --color-text-headings: rgb(255, 255, 255, 00.8); */
 
-    --color-links-dark: rgb(255, 255, 255);
-    --color-links-darker: rgb(0 0 0);
-    --color-links-light: rgb(204 204 204);
-    --color-links-lighter: rgb(255 255 255);
+    --color-links:blue;
+    --color-links-hover: darkblue;
+    --color-links-dark: blue;
+    --color-links-darker: darkblue;
+    --color-links-light: lightblue;
+    --color-links-lighter: white;
 
     --color-siteheader-background: transparent;
     --color-siteheader-links: var(--color-text-headings);
